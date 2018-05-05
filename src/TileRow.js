@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import TileRow from './TileRow.js';
+import Tile from './Tile.js';
+import './TileRow.css';
 
-class App extends Component {
-
+class TileRow extends Component {
   constructor(props) {
     super(props);
-    const numbers = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
-    const listItems = numbers.map((number) => 
-      <TileRow numbers={number}></TileRow>);
+    const listItems = this.props.numbers.map((number) => 
+      <Tile text={number}></Tile>);
     this.state = {list : listItems};
 
     // have one map here
@@ -19,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="TileRow">
         {this.state.list}
       </div>
     );
@@ -27,5 +25,4 @@ class App extends Component {
 }
 
 
-export default App;
-
+export default TileRow;
