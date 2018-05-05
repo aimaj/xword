@@ -6,15 +6,23 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    const numbers = [1, 2, 3, 4, 5];
+    const numbers = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
     const listItems = numbers.map((number) => 
-      <Tile text={number}></Tile>);
+      number.map((n) => 
+      <Tile text={n}></Tile>));
     this.state = {list : listItems};
+
+    // have one map here
+    //the map creates tilerows
+    //within a tilerow, have another map that builds the cells
+    //then can have flex rows properly
   }
 
   render() {
     return (
-      this.state.list
+      <div className="flexTest">
+        {this.state.list}
+      </div>
     );
   }
 }
