@@ -6,7 +6,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    const numbers = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
+    const numbers = [['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P', 'Q', 'R', 'S', 'T'], ['U', 'V', 'W', 'X', 'Y']];
     const listItems = numbers.map((number) => 
       <TileRow numbers={number}></TileRow>);
     this.state = {list : listItems};
