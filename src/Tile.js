@@ -9,6 +9,7 @@ class Tile extends Component {
 
   edit() {
     console.log('text: ' + this.props.text + ' row: ' + this.props.row + ' col: ' + this.props.col);
+    this.props.onFocus(this.props.row, this.props.col);
   }
 
   render() {

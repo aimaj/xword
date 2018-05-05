@@ -6,7 +6,7 @@ class TileRow extends Component {
   constructor(props) {
     super(props);
     const listItems = this.props.numbers.map((number, index) => 
-      <Tile key={index} row={this.props.row} col={index} text={number}></Tile>);
+      <Tile key={index} onFocus={this.props.onFocus} row={this.props.row} col={index} text={number}></Tile>);
     this.state = {list : listItems};
   }
 
