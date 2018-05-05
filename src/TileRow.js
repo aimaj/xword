@@ -5,14 +5,9 @@ import './TileRow.css';
 class TileRow extends Component {
   constructor(props) {
     super(props);
-    const listItems = this.props.numbers.map((number) => 
-      <Tile text={number}></Tile>);
+    const listItems = this.props.numbers.map((number, index) => 
+      <Tile key={index} row={this.props.row} col={index} text={number}></Tile>);
     this.state = {list : listItems};
-
-    // have one map here
-    //the map creates tilerows
-    //within a tilerow, have another map that builds the cells
-    //then can have flex rows properly
   }
 
   render() {

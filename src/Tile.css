@@ -13,3 +13,6 @@
 .Tile:hover {
   background: #DDDDDD;
 }
+.Tile:active {
+  background: gold;
+}
