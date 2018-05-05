@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     const numbers = [1, 2, 3, 4, 5];
     const listItems = numbers.map((number) => 
-      <Tile text="{number}"></Tile>);
+      <Tile text={number}></Tile>);
     this.state = {list : listItems};
   }
 
