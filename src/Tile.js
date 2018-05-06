@@ -9,7 +9,7 @@ class Tile extends Component {
 
   edit() {
     console.log('text: ' + this.props.text + ' row: ' + this.props.row + ' col: ' + this.props.col);
-    this.props.onFocus(this.props.row, this.props.col);
+    this.props.onFocus(this.props.col, this.props.row);
   }
 
   render() {
@@ -18,9 +18,15 @@ class Tile extends Component {
   			<div className="BlankTile"></div>
 	    );
   	} else {
-	    return (
-	      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
-	    );
+  		if (this.props.focusX === this.props.col && this.props.focusY === this.props.row) {
+		    return (
+		      <div className="SelectedTile" onClick={this.edit}>{this.props.text}</div>
+		    );  			
+  		} else {
+		    return (
+		      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
+		    );  			
+  		}
     }
   }
 }

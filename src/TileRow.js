@@ -11,8 +11,9 @@ class TileRow extends Component {
   // }
 
   render() {
+    console.log('rendering with ' + this.props.focusX + this.props.focusY);
       var list =  this.props.numbers.map((number, index) => 
-      <Tile key={index} onFocus={this.props.onFocus} row={this.props.row} col={index} text={number}></Tile>);
+      <Tile key={index} onFocus={this.props.onFocus} focusY={this.props.focusY} focusX={this.props.focusX} row={this.props.row} col={index} text={number}></Tile>);
     return (
       <div className="TileRow">
         {list}

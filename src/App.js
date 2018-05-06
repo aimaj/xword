@@ -36,20 +36,22 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({list : this.state.numbers.map((number, index) => 
-      <TileRow onFocus={this.setFocus} key={index} row={index} numbers={number}></TileRow>)});
+      <TileRow onFocus={this.setFocus} key={index} focusY={this.state.focusY} focusX={this.state.focusX} row={index} numbers={number}></TileRow>)});
   }
 
   //Provide coords for a cell that was clicked
-  //remaps all child components, syncing should be possible but doesnt seem to work at the moment
   setFocus(x, y) {
     this.setState({focusX: x, focusY: y});
   }
 
   render() {
+    var list = this.state.numbers.map((number, index) => 
+      <TileRow onFocus={this.setFocus} key={index} focusY={this.state.focusY} focusX={this.state.focusX} row={index} numbers={number}></TileRow>);
     return (
-      <div class="App">
-        <div class="Gameboard" onKeyPress={this.onKeyPress} tabIndex="0">{this.state.list}</div>
-        <div class="Questions">Questions go here:<br/>1 Across: You wear these on your feet</div>
+      <div className="App">
+        <div className="Gameboard" onKeyPress={this.onKeyPress} tabIndex="0">{list}</div>
+        <div className="Questions">Questions go here:<br/>1 Across: You wear these on your feet</div>
+        <TileRow onFocus={this.setFocus} key={5} focusY={this.state.focusY} focusX={this.state.focusX} row={5} numbers={['A', 'P', 'P', 'L', 'E']}></TileRow>
       </div>
 
     );
