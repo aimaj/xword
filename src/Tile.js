@@ -18,14 +18,28 @@ class Tile extends Component {
   			<div className="BlankTile"></div>
 	    );
   	} else {
+  		console.log('focusX is ' + this.props.focusX + 'row is ' + this.props.row + this.props.direction);
   		if (this.props.focusX === this.props.col && this.props.focusY === this.props.row) {
 		    return (
 		      <div className="SelectedTile" onClick={this.edit}>{this.props.text}</div>
 		    );  			
   		} else {
-		    return (
-		      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
-		    );  			
+  			if (this.props.direction === 0 && this.props.focusX === this.props.col) {
+  				console.log('making highlighted tile');
+			    return (
+			      <div className="HighlightedTile" onClick={this.edit}>{this.props.text}</div>
+			    );
+  			} else {
+  				if (this.props.direction === 1 && this.props.focusY === this.props.row) {
+				    return (
+				      <div className="HighlightedTile" onClick={this.edit}>{this.props.text}</div>
+				    );  
+  				} else {
+				    return (
+				      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
+				    );  	  					
+  				}
+  			}		
   		}
     }
   }

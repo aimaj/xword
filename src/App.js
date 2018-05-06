@@ -13,6 +13,7 @@ class App extends Component {
     const winState = [['A', 'P', 'P', 'L', 'E'], ['R', '0', '0', 'I', '0'], ['B', 'E', 'A', 'N', 'O'], ['O', '0', '0', 'E', '0'], ['R', '0', '0', 'S', '0']];
     this.state = {numbers: currentState,
                   win: winState,
+                  direction : 0,
                   focusX : 0,
                   focusY : 0};
 
@@ -24,34 +25,42 @@ class App extends Component {
 
   onKeyPress(e) {
     const numbers = this.state.numbers;
-    numbers[this.state.focusX][this.state.focusY] = e.key;
-    this.setState({numbers: numbers,
-                  list : this.state.numbers.map((number, index) => 
-      <TileRow onFocus={this.setFocus} key={index} row={index} numbers={number}></TileRow>)});
+    numbers[this.state.focusY][this.state.focusX] = e.key;
+    var focusY = this.state.focusY;
+    var focusX = this.state.focusX;
+    if (this.state.direction === 0) {
+      //down
+      focusY++;
+    } else {
+      focusX++;
+    }
+    this.setState({focusX: focusX, focusY: focusY, numbers: numbers});
     //string comparison is allowed, as array is ordered, with primitives
     if (JSON.stringify(this.state.numbers) === JSON.stringify(this.state.win)) {
       alert('you win!');
     }
   }
 
-  componentDidMount() {
-    this.setState({list : this.state.numbers.map((number, index) => 
-      <TileRow onFocus={this.setFocus} key={index} focusY={this.state.focusY} focusX={this.state.focusX} row={index} numbers={number}></TileRow>)});
-  }
-
   //Provide coords for a cell that was clicked
   setFocus(x, y) {
-    this.setState({focusX: x, focusY: y});
+    if (this.state.focusX === x && this.state.focusY === y) {
+      if (this.state.direction === 0) {
+        this.setState({direction: 1});
+      } else {
+        this.setState({direction: 0});        
+      }
+    } else {
+      this.setState({focusX: x, focusY: y});
+    }
   }
 
   render() {
     var list = this.state.numbers.map((number, index) => 
-      <TileRow onFocus={this.setFocus} key={index} focusY={this.state.focusY} focusX={this.state.focusX} row={index} numbers={number}></TileRow>);
+      <TileRow onFocus={this.setFocus} key={index} focusY={this.state.focusY} focusX={this.state.focusX} direction={this.state.direction} row={index} numbers={number}></TileRow>);
     return (
       <div className="App">
         <div className="Gameboard" onKeyPress={this.onKeyPress} tabIndex="0">{list}</div>
         <div className="Questions">Questions go here:<br/>1 Across: You wear these on your feet</div>
-        <TileRow onFocus={this.setFocus} key={5} focusY={this.state.focusY} focusX={this.state.focusX} row={5} numbers={['A', 'P', 'P', 'L', 'E']}></TileRow>
       </div>
 
     );
