@@ -13,9 +13,15 @@ class Tile extends Component {
   }
 
   render() {
-    return (
-      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
-    );
+  	if (this.props.text === '0') {
+  		return (
+  			<div className="BlankTile"></div>
+	    );
+  	} else {
+	    return (
+	      <div className="Tile" onClick={this.edit}>{this.props.text}</div>
+	    );
+    }
   }
 }
 
